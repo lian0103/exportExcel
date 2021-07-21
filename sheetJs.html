@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- (C) 2013-present  SheetJS http://sheetjs.com -->
+<!-- vim: set ts=2: -->
+<html>
+  <head>
+    <title>SheetJS JS-XLSX In-Browser Write Demo</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <![if gt IE 9]>
+    <script type="text/javascript" src="//unpkg.com/xlsx/dist/shim.min.js"></script>
+    <script type="text/javascript" src="//unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"
+      integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <![endif]>
+
+    <button onclick="excel()">excel()</button>
+    <script>
+      function excel() {
+        var filename = "write.xlsx";
+        var data = [
+          [1, 2, 3],
+          [true, false, null, "sheetjs"],
+          ["foo", "bar", new Date("2014-02-19T14:30Z"), "0.3"],
+          ["baz", null, "qux"],
+        ];
+        var ws_name = "SheetJS";
+
+        var wb = XLSX.utils.book_new();
+        var ws = XLSX.utils.aoa_to_sheet(data);
+
+        /* add worksheet to workbook */
+        XLSX.utils.book_append_sheet(wb, ws, ws_name);
+
+        /* write workbook */
+        let exportExcel = XLSX.writeFile(wb, filename);
+        // saveAs(exportExcel, "excel.xlxs");
+      }
+    </script>
+  </body>
+</html>
