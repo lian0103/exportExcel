@@ -5,11 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script type="text/javascript" src="//unpkg.com/xlsx/dist/shim.min.js"></script>
-    <script type="text/javascript" src="//unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/xlsx/dist/shim.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.0/jszip.min.js"></script>
     <title>xlxs2ExceltoZipFile</title>
+    <style>
+      button{
+        width: 200px;
+        height: 100px;
+        color: red;
+        font-size: 30px;
+      }
+    </style>
   </head>
   <body>
     <button onclick="elxs2Excel()">下載~~</button>
@@ -66,6 +74,7 @@
           XLSX.utils.book_append_sheet(wb, ws, sheetobj.name);
         });
         
+        //把excel工作簿轉成binary格式
         let wbout = XLSX.write(wb, {bookType: 'xlsx', bookSST: true, type: 'binary'});
 
         //把wb放入zip file
